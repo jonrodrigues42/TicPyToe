@@ -1,9 +1,6 @@
 import os, time
 import random as rd
 
-over = False
-winner = None
-
 def clear_board():
     board = {
         7: '-', 8: '-', 9: '-',
@@ -66,7 +63,9 @@ def check_win(board, choice):
         return winner
     return None
 
-def game_screen():
+def game():
+    over = False
+    winner = None
     board = clear_board()
     print_board(board)
 
@@ -112,7 +111,7 @@ def game_screen():
             return winner
      
 
-winner = game_screen()
+winner = game()
 print("GAME OVER")
 print(f"O vencedor foi {winner}\n")
 
