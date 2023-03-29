@@ -2,6 +2,7 @@ import os, time
 import random as rd
 
 over = False
+winner = None
 
 def clear_board():
     board = {
@@ -42,6 +43,26 @@ def computer_turn():
     O = rd.randint(1, 9)
     return O
 
+def check_win(board, choice):
+    if (choice == board[1] == board[2] == board[3]) or (choice == board[4] == board[5] == board[6]) or (choice == board[7] == board[8] == board[9]):
+        if choice == 'X':
+            winner = "PLAYER"
+        elif choice == 'O':
+            winner = "COMPUTER"
+        return winner
+    if (choice == board[7] == board[4] == board[1]) or (choice == board[8] == board[5] == board[2]) or (choice == board[9] == board[6] == board[3]):
+        if choice == 'X':
+            winner = "PLAYER"
+        elif choice == 'O':
+            winner = "COMPUTER"
+        return winner
+    if (choice == board[1] == board[5] == board[9]) or (choice == board[7] == board[5] == board[3]):
+        if choice == 'X':
+            winner = "PLAYER"
+        elif choice == 'O':
+            winner = "COMPUTER"
+        return winner
+    return None
 
 def game_screen():
     board = clear_board()
@@ -70,14 +91,42 @@ def game_screen():
                 turn = 'PLAY'
         print_board(board)
 
-        # Check if there's a winner
-
-        # Check if there's an empty space
+        # Check if there are no empty spaces
         all_taken = all(taken != '-' for taken in board.values())
         if all_taken:
+            turn = None
             winner = "VELHA"
-            break
-    return winner
+        
+        # Check for a winner
+        # Player wins
+        # if ('X' == board[1] == board[2] == board[3]) or ('X' == board[4] == board[5] == board[6]) or ('X' == board[7] == board[8] == board[9]):
+        #     winner = "PLAYER"
+        #     break
+        # if ('X' == board[7] == board[4] == board[1]) or ('X' == board[8] == board[5] == board[2]) or ('X' == board[9] == board[6] == board[3]):
+        #     winner = "PLAYER"
+        #     break
+        # if ('X' == board[1] == board[5] == board[9]) or ('X' == board[7] == board[5] == board[3]):
+        #     winner = "PLAYER"
+        #     break
+        
+        # # Computer wins
+        # if ('O' == board[1] == board[2] == board[3]) or ('O' == board[4] == board[5] == board[6]) or ('O' == board[7] == board[8] == board[9]):
+        #     winner = "COMPUTER"
+        #     break
+        # if ('O' == board[7] == board[4] == board[1]) or ('O' == board[8] == board[5] == board[2]) or ('O' == board[9] == board[6] == board[3]):
+        #     winner = "COMPUTER"
+        #     break
+        # if ('O' == board[1] == board[5] == board[9]) or ('O' == board[7] == board[5] == board[3]):
+        #     winner = "COMPUTER"
+        #     break
+        winner = check_win(board, 'X')
+        if winner != None:
+            turn = None
+            return winner
+        winner = check_win(board, 'O')
+        if winner != None:
+            turn = None
+            return winner
      
 
 winner = game_screen()
