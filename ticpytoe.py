@@ -90,7 +90,7 @@ def game():
         
         # Check for a tie game
         all_taken = all(taken != '-' for taken in board.values())
-        if all_taken:
+        if all_taken and (winner == None):
             turn = None
             winner = "VELHA"
             return winner
