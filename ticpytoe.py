@@ -26,7 +26,7 @@ def player_turn():
         Xstr = input(":")
         if Xstr.isdigit():
             X = int(Xstr)
-            if int(X) >= 0 and int(X) <= 9:
+            if int(X) >= 1 and int(X) <= 9:
                 ok = True
                 return X
             else:
