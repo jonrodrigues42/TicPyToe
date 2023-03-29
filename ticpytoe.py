@@ -36,7 +36,7 @@ def player_turn():
             continue
             
 def computer_turn():
-    time.sleep(0.1)
+    # time.sleep(0.1)
     O = rd.randint(1, 9)
     return O
 
@@ -78,13 +78,6 @@ def game():
         turn = 'COMP'
 
     while not over:
-        # Check if there are no empty spaces
-        all_taken = all(taken != '-' for taken in board.values())
-        if all_taken:
-            turn = None
-            winner = "VELHA"
-            return winner
-                
         # Check for a valid winner
         winner = check_win(board, 'X')
         if winner != None:
@@ -94,6 +87,14 @@ def game():
         if winner != None:
             turn = None
             return winner
+        
+        # Check for a tie game
+        all_taken = all(taken != '-' for taken in board.values())
+        if all_taken:
+            turn = None
+            winner = "VELHA"
+            return winner
+                
         
         # Player turn
         while turn == 'PLAY':
