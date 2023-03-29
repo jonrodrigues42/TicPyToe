@@ -36,7 +36,7 @@ def player_turn():
             continue
             
 def computer_turn():
-    # time.sleep(3)
+    time.sleep(0.3)
     O = rd.randint(1, 9)
     return O
 
