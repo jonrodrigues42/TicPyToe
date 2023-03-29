@@ -44,6 +44,8 @@ def computer_turn():
     return O
 
 def check_win(board, choice):
+    # To-do:
+    # clear this bs
     if (choice == board[1] == board[2] == board[3]) or (choice == board[4] == board[5] == board[6]) or (choice == board[7] == board[8] == board[9]):
         if choice == 'X':
             winner = "PLAYER"
@@ -70,8 +72,10 @@ def game_screen():
 
     # Randomly choose the first player
     if rd.randint(0, 1) == 0:
+        print("O jogador começa!\n")
         turn = 'PLAY'
     else:
+        print("O computador começa!\n")
         turn = 'COMP'
 
     while not over:
@@ -97,28 +101,7 @@ def game_screen():
             turn = None
             winner = "VELHA"
         
-        # Check for a winner
-        # Player wins
-        # if ('X' == board[1] == board[2] == board[3]) or ('X' == board[4] == board[5] == board[6]) or ('X' == board[7] == board[8] == board[9]):
-        #     winner = "PLAYER"
-        #     break
-        # if ('X' == board[7] == board[4] == board[1]) or ('X' == board[8] == board[5] == board[2]) or ('X' == board[9] == board[6] == board[3]):
-        #     winner = "PLAYER"
-        #     break
-        # if ('X' == board[1] == board[5] == board[9]) or ('X' == board[7] == board[5] == board[3]):
-        #     winner = "PLAYER"
-        #     break
-        
-        # # Computer wins
-        # if ('O' == board[1] == board[2] == board[3]) or ('O' == board[4] == board[5] == board[6]) or ('O' == board[7] == board[8] == board[9]):
-        #     winner = "COMPUTER"
-        #     break
-        # if ('O' == board[7] == board[4] == board[1]) or ('O' == board[8] == board[5] == board[2]) or ('O' == board[9] == board[6] == board[3]):
-        #     winner = "COMPUTER"
-        #     break
-        # if ('O' == board[1] == board[5] == board[9]) or ('O' == board[7] == board[5] == board[3]):
-        #     winner = "COMPUTER"
-        #     break
+        # Check for a valid winner
         winner = check_win(board, 'X')
         if winner != None:
             turn = None
@@ -132,3 +115,6 @@ def game_screen():
 winner = game_screen()
 print("GAME OVER")
 print(f"O vencedor foi {winner}\n")
+
+# To-do:
+# Play again routine
